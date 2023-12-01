@@ -58,8 +58,22 @@ public class GroceryItemController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GroceryItem> updateGroceryItem(@PathVariable Long id,
                                                          @RequestBody GroceryItem groceryItem) throws BadRequestException {
-        GroceryItem updateGroceryItem = groceryItemService.updateGroceryItem(id,groceryItem);
+        GroceryItem updateGroceryItem = groceryItemService.updateGroceryItem(id, groceryItem);
         return new ResponseEntity<>(updateGroceryItem, HttpStatus.OK);
+    }
+
+    /**
+     * manage inventory of grocery item by id
+     *
+     * @param id: id of grocery item
+     * @param stock: remaining quantity
+     * @return HttpStatus.OK
+     */
+    @PutMapping(value = "/inventory/{id}")
+    public ResponseEntity<Void> updateInventoryOfGroceryItem(@PathVariable Long id,
+                                                                    @RequestParam Long stock) throws BadRequestException {
+        groceryItemService.updateInventoryOfGroceryItem(id, stock);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

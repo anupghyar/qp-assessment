@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,5 +50,11 @@ public class GroceryItemServiceImpl implements GroceryItemService {
     @Override
     public void deleteGroceryItem(Long id) {
         groceryItemRepo.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public void updateInventoryOfGroceryItem(Long id, Long availableStock) throws BadRequestException {
+        groceryItemRepo.updateInventoryOfGroceryItem(id, availableStock);
     }
 }

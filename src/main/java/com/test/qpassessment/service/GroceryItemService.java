@@ -14,4 +14,6 @@ public interface GroceryItemService {
     GroceryItem updateGroceryItem(Long id, GroceryItem groceryItem) throws BadRequestException;
 
     void deleteGroceryItem(Long id);
+
+    void updateInventoryOfGroceryItem(Long id, Long availableStock) throws BadRequestException;
 }
